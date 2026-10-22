@@ -1,0 +1,18 @@
+{
+  "name": "pulse-chat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pulse - a real-time chat app built with React, Socket.IO and Express.",
+  "engines": { "node": ">=20.19" },
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently -n SERVER,CLIENT -c blue,magenta \"npm run server\" \"npm run client\"",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "build": "npm install --prefix client --include=dev && npm run build --prefix client",
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

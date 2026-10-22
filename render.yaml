@@ -1,0 +1,13 @@
+# One-click deploy on Render: the Node server also serves the built React app,
+# so the browser and the WebSocket share one origin (no CORS setup needed).
+services:
+  - type: web
+    name: pulse-chat
+    runtime: node
+    plan: free
+    buildCommand: npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client
+    startCommand: node server/index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
